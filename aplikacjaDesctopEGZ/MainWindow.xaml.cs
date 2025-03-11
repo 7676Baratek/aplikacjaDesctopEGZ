@@ -16,17 +16,18 @@ namespace aplikacjaDesctopEGZ
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        string litery = "qwertyuuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+        string maleLitery = "qwertyuuiopasdfghjklzxcvbnm";
+        string litery = "QWERTYUIOPASDFGHJKLZXCVBNM";
         string cyfry = "1234567890";
         string znakiSpecjalne = "!@#$%^&*()_+-=";
         char[] haslo;
+        string haslo1 = "";
 
         Random random = new Random();
 
-        
+        ComboBoxItem stanowisko;
 
-        
+
 
         int liczbaZnakow = 0;
         public MainWindow()
@@ -34,69 +35,64 @@ namespace aplikacjaDesctopEGZ
             InitializeComponent();
         }
 
-        private void zatwierdzBtn_Click(object sender, RoutedEventArgs e)
+        public void zatwierdzBtn_Click(object sender, RoutedEventArgs e)
         {
             int.TryParse(ileZnakowText.Text, out liczbaZnakow);
 
             haslo = new char[liczbaZnakow];
 
-            /*for (int i = 0; i < liczbaZnakow; i++)
+            for(int i =0; i < liczbaZnakow; i++)
             {
-                if (czyMaleWIelkie.IsChecked == true)
-                {
-                    haslo[i] += litery[random.Next(0, litery.Length)];
-                }
+                haslo[i] = maleLitery[random.Next(0, maleLitery.Length)];
+            }
 
-                else if (czyCyfry.IsChecked == true)
-                {
-                    haslo[i] += cyfry[random.Next(0, cyfry.Length)];
-                }
-                else if (czyZnakiSpecjalne.IsChecked == true)
-                {
-                    haslo[i] += znakiSpecjalne[random.Next(0, znakiSpecjalne.Length)];
-                }
-                
-            }*/
-
+            
             if (czyMaleWIelkie.IsChecked == true)
             {
                 for (int i = 0; i < liczbaZnakow; i++)
                 {
-                    haslo[i] += litery[random.Next(0, litery.Length)];
+                    haslo[i] = litery[random.Next(0, litery.Length)];
                 }
             }
-
+            
             if (czyCyfry.IsChecked == true)
             {
-                for (int i = 1; i < liczbaZnakow; i+2)
+            
+                for (int i = 0; i < liczbaZnakow; i++)
                 {
-                    haslo[i] += cyfry[random.Next(0, cyfry.Length)];
+                    if (i % 2 == 0 || haslo[i] == ' ')
+                        haslo[i] = cyfry[random.Next(0, cyfry.Length)];
                 }
             }
-
-
+            
             if (czyZnakiSpecjalne.IsChecked == true)
             {
-                for (int i = 3; i < liczbaZnakow; i + 3)
+            
+                for (int i = 0; i < liczbaZnakow; i++)
                 {
-                    haslo[i] += cyfry[random.Next(0, cyfry.Length)];
+                    if (i % 3 == 0 || haslo[i] == ' ')
+                        haslo[i] = znakiSpecjalne[random.Next(0, znakiSpecjalne.Length)];
                 }
             }
 
+            haslo1 = "";
+
+            for (int i = 0; i < haslo.Length; i++)
+            {
+                haslo1 += haslo[i].ToString();
+            }
+
+            MessageBox.Show(haslo1);
+
         }
 
-        
-
-        private void ZatwierzBtn_Click(object sender, RoutedEventArgs e)
+        private void wyswietlBtn_Click(object sender, RoutedEventArgs e)
         {
-            string haslo1 = "";
 
-           for(int i = 0; i < haslo.Length;i++)
-           {
-                haslo1 += haslo[i].ToString();
-           }
-
-            MessageBox.Show($"Dane pracownika: {imieText.Text} {nazwiskoText.Text} haslo: {haslo1}");
+            stanowisko = stanowiskoCombo.SelectedItem as ComboBoxItem;
+            MessageBox.Show($"Dane pracownika: {imieText.Text} {nazwiskoText.Text} {stanowisko.Content} haslo: {haslo1}");
         }
     }
+
+
 }
