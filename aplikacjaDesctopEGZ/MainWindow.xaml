@@ -1,0 +1,41 @@
+﻿<Window x:Class="aplikacjaDesctopEGZ.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:aplikacjaDesctopEGZ"
+        mc:Ignorable="d"
+        Title="Dodaj pracownika" 
+        Height="450" Width="800"
+        Background="LightSteelBlue">
+    <Grid>
+        <GroupBox Header="Dane pracownika" Margin="40,74,589,153">
+            <StackPanel>
+                <Label HorizontalAlignment="Left" Content="Imie" Width="55"/>
+                <TextBox x:Name="imieText" TextWrapping="Wrap" Text="" Width="120" />
+                <Label HorizontalAlignment="Left" Content="Nazwisko" Width="79"/>
+                <TextBox x:Name="nazwiskoText" TextWrapping="Wrap" Text="" Width="120" />
+                <Label HorizontalAlignment="Left" Content="Stanowisko" Width="79"/>
+                <ComboBox x:Name="stanowiskoCombo" Width="120">
+                    <ComboBoxItem Content="Kierownik"/>
+                    <ComboBoxItem Content="Starszy Programista"/>
+                    <ComboBoxItem Content="Mlodszy programista"/>
+                    <ComboBoxItem Content="tester"/>
+                </ComboBox>
+
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Generowanie hasla" Margin="582,74,47,153">
+            <StackPanel>
+                <Label Content="Ile znakow"/>
+                <TextBox x:Name="ileZnakowText" TextWrapping="Wrap" Text="" Width="120"/>
+                <CheckBox x:Name="czyMaleWIelkie" Content="Male i wielkie litery"/>
+                <CheckBox x:Name="czyCyfry" Content="Cyfry"/>
+                <CheckBox x:Name="czyZnakiSpecjalne" Content="Znaki Specjalne"/>
+                <Button x:Name="zatwierdzBtn" Content="Generuj haslo" Click="zatwierdzBtn_Click" Foreground="White" Background="SteelBlue"/>
+            </StackPanel>
+        </GroupBox>
+        <Button Click="ZatwierzBtn_Click" Foreground="White" Background="SteelBlue" x:Name="ZatwierzBtn" Content="Button" HorizontalAlignment="Center" Margin="0,310,0,0" VerticalAlignment="Top" Width="596" Height="31"/>
+
+    </Grid>
+</Window>
